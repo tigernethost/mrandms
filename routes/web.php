@@ -25,4 +25,20 @@ Route::group([
     CRUD::resource('criterion', 'CriterionCrudController');
     CRUD::resource('round', 'RoundCrudController');
     CRUD::resource('judge', 'JudgeCrudController');
+    CRUD::resource('judging', 'StartJudgingCrudController');
+    CRUD::resource('result', 'ResultCrudController');
+
+    Route::get('casualwear', 'ResultCrudController@casualwear');
+    Route::get('creativeheaddress', 'ResultCrudController@CreativeHeadDress');
+    Route::get('physique', 'ResultCrudController@physique');
+    Route::get('swimwear', 'ResultCrudController@swimwear');
+    Route::get('facialbeautylooks', 'ResultCrudController@facialbeautylooks');
+    Route::get('formalwear', 'ResultCrudController@formalwear');
 });
+
+// Route::get('/admin/judging', 'StartJudgingController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/submit', 'HomeController@submit')->name('submit');

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Candidate extends Model
+class Tabulator extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Candidate extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'candidates';
+    protected $table = 'tabulator';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['firstname','middlename','lastname','gender','year','department','candidate_no', 'image_file'];
+    protected $fillable = ['judge_no','criteria_no', 'candidate_no', 'round_no', 'score'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,9 @@ class Candidate extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    // public function criterion() {
+    //     return $this->hasMany('App\Models\Criterion');
+    // }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

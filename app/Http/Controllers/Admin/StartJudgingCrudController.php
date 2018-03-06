@@ -5,22 +5,30 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\CandidateRequest as StoreRequest;
-use App\Http\Requests\CandidateRequest as UpdateRequest;
+use App\Http\Requests\JudgeRequest as StoreRequest;
+use App\Http\Requests\JudgeRequest as UpdateRequest;
 
-class CandidateCrudController extends CrudController
+use App\Models\Candidate;
+use App\Models\Judge;
+use App\Models\Criterion;
+
+class StartJudgingCrudController extends CrudController
 {
+
     public function setup()
     {
+        $this->data['candidates'] = Candidate::all(); 
+        $this->data['judges']     = Judge::all(); 
+        $this->data['criterion']     = Criterion::all(); 
 
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Candidate');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/candidate');
-        $this->crud->setEntityNameStrings('candidate', 'candidates');
+        $this->crud->setModel('App\Models\Judge');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/judging');
+        $this->crud->setEntityNameStrings('judge', 'judges');
 
         /*
         |--------------------------------------------------------------------------
@@ -29,35 +37,7 @@ class CandidateCrudController extends CrudController
         */
 
         $this->crud->setFromDb();
-
-        $this->crud->addField([
-                'name' => 'gender',
-            'label' => "Gender",
-            'type' => 'select2_from_array',
-            'options' => ['Male' => 'Male', 'Female' => 'Female'],
-            'allows_null' => false,
-            'default' => 'one'
-        ]);
-
-        //  $this->crud->addField([ // base64_image
-        //     'label' => "Upload Image",
-        //     'name' => "image",
-        //     'filename' => "image_file", // set to null if not needed
-        //     'type' => 'base64_image',
-        //     'aspect_ratio' => 0, // set to 0 to allow any aspect ratio
-        //     'crop' => false, // set to true to allow cropping, false to disable
-        //     'src' => NULL, // null to read straight from DB, otherwise set to model accessor function
-        // ]);
-
-         $this->crud->addField(
-            [
-               'label' => "Profile Image",
-                'name' => "image_file",
-                'filename' => null, // set to null if not needed
-                'type' => 'base64_image'
-            ]
-         );
-       
+        $this->crud->setListView('custom.judging');
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
@@ -67,7 +47,7 @@ class CandidateCrudController extends CrudController
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
-        $this->crud->removeColumn('image_file'); // remove a column from the stack
+        // $this->crud->removeColumn('column_name'); // remove a column from the stack
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
@@ -126,6 +106,8 @@ class CandidateCrudController extends CrudController
         // $this->crud->groupBy();
         // $this->crud->limit();
     }
+
+
 
     public function store(StoreRequest $request)
     {

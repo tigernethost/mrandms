@@ -15,12 +15,13 @@ class CreateCandidatesTable extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
-            $table->string('middlename');
+            $table->string('middlename')->nullable();
             $table->string('lastname');
             $table->string('gender');
             $table->string('year');
             $table->string('department');
             $table->string('candidate_no');
+            $table->longText('image_file')->nullable();
             $table->timestamps();
         });
     }

@@ -17,6 +17,9 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('judgeno')->unique()->nullable();
+            $table->string('submitted_criteria')->nullable();
+            $table->string('account_type')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -16,7 +16,8 @@ class CreateJudgesTable extends Migration
             $table->increments('id');
             $table->string('fullname');
             $table->string('description');
-            $table->string('judgeno');
+            $table->integer('user_id');
+            // $table->string('user_id');
             $table->timestamps();
         });
     }

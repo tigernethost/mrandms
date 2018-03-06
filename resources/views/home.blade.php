@@ -82,8 +82,8 @@
                                             </select> --}}
                                             <select class="form-control" name="candidate[{{ $candidate->candidate_no }}]" id="" required>
                                                 <option selected disabled value="">Select Criteria</option>
-                                                @for($i = 0; $i <= (int)$criterion[0]->highest; $i++)
-                                                    <option value="{{ $criterion[0]->id }}">{{ $i }}</option>
+                                                @for($i = 1; $i <= (int)$criterion[0]->highest; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
                                         </td>

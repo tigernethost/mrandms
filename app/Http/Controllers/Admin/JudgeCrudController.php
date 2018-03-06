@@ -18,7 +18,7 @@ class JudgeCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Judge');
+        $this->crud->setModel('App\User');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/judge');
         $this->crud->setEntityNameStrings('judge', 'judges');
 
@@ -86,7 +86,7 @@ class JudgeCrudController extends CrudController
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
         // $this->crud->addClause('type', 'car');
-        // $this->crud->addClause('where', 'name', '==', 'car');
+        $this->crud->addClause('where', 'judgeno', '>', '0');
         // $this->crud->addClause('whereName', 'car');
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Candidate;
 use App\Models\Judge;
 use App\Models\Tabulator;
+use App\User;
 
 class ResultCrudController extends CrudController
 {
@@ -110,7 +111,7 @@ class ResultCrudController extends CrudController
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+        $judges = User::where('judgeno','>',0)->get();
         // $candidates = Candidate::select('candidates.*', 'tabulator.*')->distinct('tabulator.*')->join('tabulator', 'candidates.candidate_no', '=', 'tabulator.candidate_no')->where('tabulator.criteria_no', '=', '1')->get();
         $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 1');
 
@@ -148,8 +149,9 @@ class ResultCrudController extends CrudController
             ];
             array_push($newArray, $a);
         }   
+        $candidates = $newArray;
         // dd($newArray);
-        return view('custom.casualwear')->withJudges($judges)->withCandidates($newArray);
+        return view('custom.casualwear',compact('judges','candidates'));
     }
 
 
@@ -249,7 +251,7 @@ class ResultCrudController extends CrudController
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+        $judges = User::where('judgeno','>',0)->get();
 
         $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 4');
 

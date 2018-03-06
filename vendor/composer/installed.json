@@ -4428,59 +4428,6 @@
         ]
     },
     {
-        "name": "laracasts/generators",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-            "reference": "8d99c3f9891abce5cc84d5d1d4a7c26cf514ab6e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/8d99c3f9891abce5cc84d5d1d4a7c26cf514ab6e",
-            "reference": "8d99c3f9891abce5cc84d5d1d4a7c26cf514ab6e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "~5.0",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "phpspec/phpspec": "~2.1"
-        },
-        "time": "2017-11-15T07:23:53+00:00",
-        "type": "library",
-        "extra": {
-            "laravel": {
-                "providers": [
-                    "Laracasts\\Generators\\GeneratorsServiceProvider"
-                ]
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Laracasts\\Generators\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jeffrey Way",
-                "email": "jeffrey@laracasts.com"
-            }
-        ],
-        "description": "Extend Laravel 5's generators.",
-        "keywords": [
-            "generators",
-            "laravel"
-        ]
-    },
-    {
         "name": "psr/http-message",
         "version": "1.0.1",
         "version_normalized": "1.0.1.0",
@@ -5435,6 +5382,197 @@
             "delete",
             "read",
             "update"
+        ]
+    },
+    {
+        "name": "laracasts/generators",
+        "version": "1.1.4",
+        "version_normalized": "1.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
+            "reference": "bf6aa824698516cb6e22f63f275e8f73bd25f56b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/bf6aa824698516cb6e22f63f275e8f73bd25f56b",
+            "reference": "bf6aa824698516cb6e22f63f275e8f73bd25f56b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpspec/phpspec": "~2.1"
+        },
+        "time": "2017-11-14T20:43:22+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Laracasts\\Generators\\GeneratorsServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Laracasts\\Generators\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jeffrey Way",
+                "email": "jeffrey@laracasts.com"
+            }
+        ],
+        "description": "Extend Laravel 5's generators.",
+        "keywords": [
+            "generators",
+            "laravel"
+        ]
+    },
+    {
+        "name": "spatie/laravel-permission",
+        "version": "1.16.1",
+        "version_normalized": "1.16.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-permission.git",
+            "reference": "839aa8cdbbe041b1cf17f40edd71879d5eb4c02e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/839aa8cdbbe041b1cf17f40edd71879d5eb4c02e",
+            "reference": "839aa8cdbbe041b1cf17f40edd71879d5eb4c02e",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "~5.1.0|~5.2.0|~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+            "laravel/framework": "~5.1.11|~5.2.0|~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+            "php": ">=5.6.0"
+        },
+        "require-dev": {
+            "orchestra/testbench": "^3.3.0",
+            "phpunit/phpunit": "^5.7.8|~6.0|^7.0"
+        },
+        "time": "2018-02-07T16:54:07+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Spatie\\Permission\\PermissionServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\Permission\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "Permission handling for Laravel 5.1 and up",
+        "homepage": "https://github.com/spatie/laravel-permission",
+        "keywords": [
+            "acl",
+            "laravel",
+            "permission",
+            "security",
+            "spatie"
+        ]
+    },
+    {
+        "name": "backpack/permissionmanager",
+        "version": "2.1.24",
+        "version_normalized": "2.1.24.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Laravel-Backpack/PermissionManager.git",
+            "reference": "d82f33a6d56b6562a44cf199c78afbacd8093829"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Laravel-Backpack/PermissionManager/zipball/d82f33a6d56b6562a44cf199c78afbacd8093829",
+            "reference": "d82f33a6d56b6562a44cf199c78afbacd8093829",
+            "shasum": ""
+        },
+        "require": {
+            "backpack/crud": "^3.3.0",
+            "spatie/laravel-permission": "^1.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*",
+            "scrutinizer/ocular": "~1.1"
+        },
+        "time": "2017-12-13T05:34:02+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            },
+            "laravel": {
+                "providers": [
+                    "Backpack\\PermissionManager\\PermissionManagerServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Backpack\\PermissionManager\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "proprietary"
+        ],
+        "authors": [
+            {
+                "name": "Marius Constantin",
+                "email": "marius@updivision.com",
+                "homepage": "http://www.updivision.com",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Cristian Tabacitu",
+                "email": "hello@tabacitu.ro",
+                "homepage": "http://www.tabacitu.ro",
+                "role": "Chief Architect"
+            }
+        ],
+        "description": "Users and permissions management interface for Laravel 5 using Backpack CRUD.",
+        "homepage": "https://github.com/laravel-backpack/permissionmanager",
+        "keywords": [
+            "backpack",
+            "backpack permission",
+            "backpack roles",
+            "backpack user management",
+            "dick",
+            "dick permission",
+            "laravel backpack",
+            "manage permission",
+            "manage roles",
+            "manage users",
+            "tabacitu",
+            "updivision",
+            "users roles admin"
         ]
     }
 ]

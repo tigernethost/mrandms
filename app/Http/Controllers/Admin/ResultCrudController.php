@@ -106,6 +106,7 @@ class ResultCrudController extends CrudController
         // $this->crud->limit();
     }
 
+
     public function casualwear() {
 
         $newArray = [];
@@ -146,8 +147,12 @@ class ResultCrudController extends CrudController
                 "vote" => $getVote,
                 "total_avg" => number_format($total, 2, '.', ' ')
             ];
+
+
             array_push($newArray, $a);
-        }   
+        }
+
+           
         // dd($newArray);
         return view('custom.casualwear')->withJudges($judges)->withCandidates($newArray);
     }
@@ -217,7 +222,7 @@ class ResultCrudController extends CrudController
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 3) {
+                if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
                     $score += 4;
@@ -307,7 +312,7 @@ class ResultCrudController extends CrudController
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 3) {
+                if((int)$value->score >= 10) {
                     $score += (int)$value->score;
                 } else {
                     $score += 4;
@@ -351,7 +356,7 @@ class ResultCrudController extends CrudController
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 4) {
+                if((int)$value->score >= 4  ) {
                     $score += (int)$value->score;
                 } else {
                     $score += 4;

@@ -168,7 +168,7 @@ class ResultCrudController extends CrudController
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+       $judges = User::where('judgeno','>',0)->get();
 
         $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 2');
 
@@ -204,8 +204,10 @@ class ResultCrudController extends CrudController
             ];
             array_push($newArray, $a);
           } 
+
+           $candidates = $newArray;
         // dd($newArray);
-        return view('custom.creativeheaddress')->withJudges($judges)->withCandidates($newArray);
+        return view('custom.creativeheaddress',compact('judges','candidates'));
     }
 
 
@@ -250,7 +252,9 @@ class ResultCrudController extends CrudController
             array_push($newArray, $a);
         }   
         // dd($newArray);
-        return view('custom.creativeheaddress')->withJudges($judges)->withCandidates($newArray);
+
+         $candidates = $newArray;
+        return view('custom.creativeheaddress',compact('judges','candidates'));
     }
 
 
@@ -295,7 +299,8 @@ class ResultCrudController extends CrudController
             array_push($newArray, $a);
         }   
         // dd($newArray);
-        return view('custom.creativeheaddress')->withJudges($judges)->withCandidates($newArray);
+         $candidates = $newArray;
+        return view('custom.creativeheaddress',compact('judges','candidates'));
     }
 
 
@@ -303,7 +308,7 @@ class ResultCrudController extends CrudController
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+        $judges = User::where('judgeno','>',0)->get();
 
         $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 5');
 
@@ -340,14 +345,15 @@ class ResultCrudController extends CrudController
             array_push($newArray, $a);
         }   
         // dd($newArray);
-        return view('custom.creativeheaddress')->withJudges($judges)->withCandidates($newArray);
+         $candidates = $newArray;
+        return view('custom.creativeheaddress',compact('judges','candidates'));
     }
 
     public function formalwear() {
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+        $judges = User::where('judgeno','>',0)->get();
 
         $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 6');
 
@@ -384,7 +390,8 @@ class ResultCrudController extends CrudController
             array_push($newArray, $a);
         }   
         // dd($newArray);
-        return view('custom.creativeheaddress')->withJudges($judges)->withCandidates($newArray);
+         $candidates = $newArray;
+        return view('custom.creativeheaddress',compact('judges','candidates'));
     }
 
     public function store(StoreRequest $request)

@@ -30,9 +30,18 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $criterion = Criterion::get()->all();
-        $candidates = Candidate::get()->all();
+        $criterion = Criterion::all();
+        $candidates = Candidate::all();
         return view('home')->withCriterion($criterion)->withCandidates($candidates);
+    }
+
+    public function start (Request $request) {
+        $getCriteria = $request->criteria_no;
+        
+        $criterion = Criterion::find($getCriteria);
+        $candidates = Candidate::all();
+        // dd($criterion);
+        return view('homestart', compact('criterion', 'candidates'));
     }
 
     public function submit (Request $request) {

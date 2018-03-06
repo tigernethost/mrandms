@@ -20,7 +20,7 @@
 
             <h1 class="text-center">PRELIMINARY</h1>
             <div class="row" style="margin-top: 40px;">
-                <form action="/submit" method="post">
+                <form action="/submit/start" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="round_no" value="1">
                         <input type="hidden" name="judge_no" value="{{ Auth::user()->judgeno }}">
@@ -36,9 +36,7 @@
                         </div>
                         <div class="col-sm-8">  
                             <label for="criteria_no">Filter</label><br>
-                            <a href="javascript:void(0)" id="showAll" class="btn btn-primary">Show All</a>
-                            <a href="javascript:void(0)" id="showMale" class="btn btn-primary">Show Male</a>
-                            <a href="javascript:void(0)" id="showFemale" class="btn btn-primary">Show Female</a>
+                                <button type="submit">Submit</button>
                                 {{-- <select class="form-control" name="" id="">
                                     <option value="">Select Judge</option>
                                     @foreach($judges as $judge)
@@ -49,6 +47,7 @@
                         <div class="clearfix"></div>
                         <hr>  
                         
+<<<<<<< HEAD
                         <table class="table table-striped table-hover" style="margin-top: 30px">   
                             <thead>
                                 <th class="text-center">Candidate No</th>
@@ -92,6 +91,8 @@
                             </tbody>
                         </table>
                         <button class="btn btn-primary pull-right">Submit</button>
+=======
+>>>>>>> ce79000a53ef30a07259783db602d0f7c889982a
                 </form>
 
 

@@ -42,8 +42,8 @@ class User extends Model
         return $this->hasOne('App\Models\Judge');
     }
 
-    public function setPasswordAttribute($value){
-        return bcrypt($value);
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = Hash::make($password);
     }
 
     /*

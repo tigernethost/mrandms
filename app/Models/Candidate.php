@@ -19,7 +19,7 @@ class Candidate extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['firstname','middlename','lastname','gender','year','department','candidate_no', 'image_file'];
+    protected $fillable = ['firstname','middlename','lastname','gender','year','department','candidate_no', 'image_file','isWinner'];
     // protected $hidden = [];
     // protected $dates = [];
 

@@ -1,0 +1,1 @@
+<a href="{{ url('admin/updatewinner/' . $entry->getKey() ) }}" class="btn btn-sm btn-default">Winner</a>

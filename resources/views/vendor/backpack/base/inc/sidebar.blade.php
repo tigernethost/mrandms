@@ -22,6 +22,8 @@
 
           {{-- <li><a href="{{  backpack_url('judging') }}"><i class="fa fa-files-o"></i> <span>Start Judging</span></a></li> --}}
           <li><a href="{{  backpack_url('result') }}"><i class="fa fa-files-o"></i> <span>Result</span></a></li>
+          <li><a href="{{  backpack_url('summary') }}"><i class="fa fa-files-o"></i> <span>Summary</span></a></li>
+          <li><a href="{{  backpack_url('final') }}"><i class="fa fa-files-o"></i> <span>Final</span></a></li>
           {{-- <li><a href="{{  backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li> --}}
           <li class="treeview">
             <a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>

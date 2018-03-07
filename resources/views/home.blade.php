@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-8">  
                             <label for="criteria_no">Filter</label><br>
-                                <button type="submit">Submit</button>
+                                <button type="submit" class="btn btn-default">Submit</button>
                                 {{-- <select class="form-control" name="" id="">
                                     <option value="">Select Judge</option>
                                     @foreach($judges as $judge)

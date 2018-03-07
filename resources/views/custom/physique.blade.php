@@ -1,14 +1,14 @@
 @extends('backpack::layout')
 @section('content')
 {{-- {{ dd($candidates[12]['vote'][0]->score) }} --}}
-	<h1 class="text-center">Casual Wear</h1>
+	<h1 class="text-center">Physique</h1>
 	<h4 style="margin-top: 40px">Girls</h4>
 	<table class="table table-bordered table-striped table-hover">
 		<thead>
 			<th>No.</th>
 			<th>Candidate Name</th>
 				@foreach($judges as $judge)
-					<th> {{ $judge->fullname }}</th>
+					<th> {{ $judge->name }}</th>
 				@endforeach
 			<th> Final Total</th>
 			<th> Final Rank</th>
@@ -39,7 +39,7 @@
 			<th>No.</th>
 			<th>Candidate Name</th>
 				@foreach($judges as $judge)
-					<th> {{ $judge->fullname }}</th>
+					<th> {{ $judge->name }}</th>
 				@endforeach
 			<th> Final Total</th>
 			<th> Final Rank</th>

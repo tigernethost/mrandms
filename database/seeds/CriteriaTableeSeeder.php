@@ -16,8 +16,8 @@ class CriteriaTableeSeeder extends Seeder
         	[
             'name' => "(1) Casual Wear",
             'description' => "aa",
-            'highest' => '10',
-            'lowest' => '4',
+            'highest' => '15',
+            'lowest' => '7',
             'round_id' => '1'
         	]
         );
@@ -26,8 +26,8 @@ class CriteriaTableeSeeder extends Seeder
         	[
             'name' => "(2) Creative Head Dress",
             'description' => "aa",
-            'highest' => '10',
-            'lowest' => '4',
+            'highest' => '15',
+            'lowest' => '7',
             'round_id' => '1'
         	]
         );
@@ -46,8 +46,8 @@ class CriteriaTableeSeeder extends Seeder
         	[
             'name' => "(3) Swim Wear",
             'description' => "aa",
-            'highest' => '10',
-            'lowest' => '4',
+            'highest' => '15',
+            'lowest' => '7',
             'round_id' => '1'
         	]
         );
@@ -66,11 +66,30 @@ class CriteriaTableeSeeder extends Seeder
         	[
             'name' => "(4) Formal Wear",
             'description' => "aa",
-            'highest' => '10',
-            'lowest' => '4',
+            'highest' => '15',
+            'lowest' => '7',
             'round_id' => '1'
         	]
         );
 
+        DB::table('criteria')->insert(
+            [
+            'name' => "Intelligence",
+            'description' => "aa",
+            'highest' => '50',
+            'lowest' => '20',
+            'round_id' => '2'
+            ]
+        );
+
+        DB::table('criteria')->insert(
+            [
+            'name' => "Over All Impression",
+            'description' => "aa",
+            'highest' => '50',
+            'lowest' => '20',
+            'round_id' => '2'
+            ]
+        );
     }
 }

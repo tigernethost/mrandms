@@ -3,6 +3,7 @@
 		<h1 class="text-center">SELECT CRITERIA TO VIEW RESULT</h1>
 		<div style="margin-top: 30px;"></div>
 			
+			<h3 class="text-center">PRELIMINARY</h3>
 
 			<div class="col-sm-4">
 					<a href="{{ url('admin/casualwear') }}">
@@ -48,6 +49,27 @@
 					<a href="{{ url('admin/formalwear') }}">
 						<div class="card col-sm-12" style="background-color: #FFF; box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); padding-top: 10px; padding-bottom: 10px;">
 							<h5 class="card-title">FORMAL WEAR</h5>
+						</div>
+					</a>
+			</div>
+
+		<div class="clearfix"></div>
+		<div style="margin-top: 30px;"></div>
+			
+			<h3 class="text-center">FINALS</h3>
+
+			<div class="col-sm-4">
+					<a href="{{ url('admin/intelligence') }}">
+						<div class="card col-sm-12" style="background-color: #FFF; box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); padding-top: 10px; padding-bottom: 10px;">
+							<h5 class="card-title">INTELLIGENCE</h5>
+						</div>
+					</a>
+			</div>
+
+			<div class="col-sm-4">
+					<a href="{{ url('admin/overallimpression') }}">
+						<div class="card col-sm-12" style="background-color: #FFF; box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); padding-top: 10px; padding-bottom: 10px;">
+							<h5 class="card-title">OVER ALL IMPRESSION</h5>
 						</div>
 					</a>
 			</div>

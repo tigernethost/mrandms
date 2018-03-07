@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Illuminate\Http\Request;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CandidateRequest as StoreRequest;
 use App\Http\Requests\CandidateRequest as UpdateRequest;
+
+use App\Models\Candidate;
 
 class CandidateCrudController extends CrudController
 {
@@ -31,7 +34,7 @@ class CandidateCrudController extends CrudController
         $this->crud->setFromDb();
 
         $this->crud->addField([
-                'name' => 'gender',
+            'name' => 'gender',
             'label' => "Gender",
             'type' => 'select2_from_array',
             'options' => ['Male' => 'Male', 'Female' => 'Female'],
@@ -54,9 +57,15 @@ class CandidateCrudController extends CrudController
                'label' => "Profile Image",
                 'name' => "image_file",
                 'filename' => null, // set to null if not needed
-                'type' => 'base64_image'
+                'type' => 'base64_image',
+                'crop' => true
             ]
          );
+
+         $this->crud->addColumn([
+            'name'=>'isWinner',
+            'label' => "Winners"
+        ]);
        
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -74,7 +83,7 @@ class CandidateCrudController extends CrudController
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
-        // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function
+        $this->crud->addButtonFromView('line', 'updateWinner', 'updatewinner', 'end'); // add a button; possible types are: view, model_function
         // $this->crud->addButtonFromModelFunction($stack, $name, $model_function_name, $position); // add a button whose HTML is returned by a method in the CRUD model
         // $this->crud->addButtonFromView($stack, $name, $view, $position); // add a button whose HTML is in a view placed at resources\views\vendor\backpack\crud\buttons
         // $this->crud->removeButton($name);
@@ -125,6 +134,14 @@ class CandidateCrudController extends CrudController
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
+    }
+
+    public function updateWinner (UpdateRequest $request, $id) {
+        $candidate = Candidate::where('id', '=', $id);
+        $candidate->update(['isWinner' => 1]);
+
+        \Alert::success('Updated Winner')->flash();
+        return redirect('admin/candidate');
     }
 
     public function store(StoreRequest $request)

@@ -22,6 +22,7 @@ class CreateCandidatesTable extends Migration
             $table->string('department');
             $table->string('candidate_no');
             $table->longText('image_file')->nullable();
+            $table->boolean('isWinner')->nullable();
             $table->timestamps();
         });
     }

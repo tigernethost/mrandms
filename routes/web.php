@@ -27,13 +27,23 @@ Route::group([
     CRUD::resource('judge', 'JudgeCrudController');
     CRUD::resource('judging', 'StartJudgingCrudController');
     CRUD::resource('result', 'ResultCrudController');
+    CRUD::resource('summary', 'SummaryCrudController');
+    CRUD::resource('final', 'FinalCrudController');
 
+        // PRELIMINARY
     Route::get('casualwear', 'ResultCrudController@casualwear');
     Route::get('creativeheaddress', 'ResultCrudController@CreativeHeadDress');
     Route::get('physique', 'ResultCrudController@physique');
     Route::get('swimwear', 'ResultCrudController@swimwear');
     Route::get('facialbeautylooks', 'ResultCrudController@facialbeautylooks');
+
+    Route::get('updatewinner/{id}', 'CandidateCrudController@updateWinner');
+
     Route::get('formalwear', 'ResultCrudController@formalwear');
+
+        // FINALS 
+    Route::get('intelligence', 'ResultCrudController@intelligence');
+    Route::get('overallimpression', 'ResultCrudController@overallimpression');
 });
 
 // Route::get('/admin/judging', 'StartJudgingController@index');
@@ -41,5 +51,9 @@ Route::group([
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/finals', 'FinalsController@index')->name('home');
 Route::post('/submit', 'HomeController@submit')->name('submit');
+
 Route::post('/submit/start', 'HomeController@start')->name('submitstart');
+Route::post('/submit/finalsstart', 'FinalsController@start')->name('finalsubmitstart');
+Route::post('/finalsubmit', 'FinalsController@submit')->name('finalsubmit');

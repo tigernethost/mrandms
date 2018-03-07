@@ -89,7 +89,7 @@ class ResultCrudController extends CrudController
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+        $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
@@ -114,7 +114,7 @@ class ResultCrudController extends CrudController
 
         $judges = User::where('judgeno','>',0)->get();
         // $candidates = Candidate::select('candidates.*', 'tabulator.*')->distinct('tabulator.*')->join('tabulator', 'candidates.candidate_no', '=', 'tabulator.candidate_no')->where('tabulator.criteria_no', '=', '1')->get();
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 1');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 1 AND tabulator.round_no = 1');
 
         $jid = 1;
         // LOOP ALL JUDGES
@@ -122,12 +122,12 @@ class ResultCrudController extends CrudController
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 1');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 1 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 4) {
+                if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
                     $score += 4;
@@ -170,18 +170,18 @@ class ResultCrudController extends CrudController
 
        $judges = User::where('judgeno','>',0)->get();
 
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 2');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 2 AND tabulator.round_no = 1');
 
         $getTotalCandidates = Candidate::get()->all();
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 2');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 2 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 4) {
+                if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
                     $score += 4;
@@ -215,15 +215,15 @@ class ResultCrudController extends CrudController
 
         $newArray = [];
 
-        $judges = Judge::get()->all();
+        $judges = User::where('judgeno','>',0)->get();
 
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 3');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 3 AND tabulator.round_no = 1 AND tabulator.round_no = 1');
 
         $getTotalCandidates = Candidate::get()->all();
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 3');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 3 AND tabulator.round_no = 1 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
@@ -231,7 +231,7 @@ class ResultCrudController extends CrudController
                 if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
-                    $score += 4;
+                    $score += 7;
                 }
                 // $score += (int)$value->score;
                 $total = $score / count($judges);
@@ -254,7 +254,7 @@ class ResultCrudController extends CrudController
         // dd($newArray);
 
          $candidates = $newArray;
-        return view('custom.creativeheaddress',compact('judges','candidates'));
+        return view('custom.physique',compact('judges','candidates'));
     }
 
 
@@ -264,21 +264,21 @@ class ResultCrudController extends CrudController
 
         $judges = User::where('judgeno','>',0)->get();
 
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 4');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 4 AND tabulator.round_no = 1');
 
         $getTotalCandidates = Candidate::get()->all();
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 4');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 4 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 4) {
+                if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
-                    $score += 4;
+                    $score += 7;
                 }
                 // $score += (int)$value->score;
                 $total = $score / count($judges);
@@ -300,7 +300,7 @@ class ResultCrudController extends CrudController
         }   
         // dd($newArray);
          $candidates = $newArray;
-        return view('custom.creativeheaddress',compact('judges','candidates'));
+        return view('custom.swimwear',compact('judges','candidates'));
     }
 
 
@@ -310,13 +310,13 @@ class ResultCrudController extends CrudController
 
         $judges = User::where('judgeno','>',0)->get();
 
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 5');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 5 AND tabulator.round_no = 1');
 
         $getTotalCandidates = Candidate::get()->all();
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 5');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 5 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
@@ -324,7 +324,7 @@ class ResultCrudController extends CrudController
                 if((int)$value->score >= 10) {
                     $score += (int)$value->score;
                 } else {
-                    $score += 4;
+                    $score += 10;
                 }
                 // $score += (int)$value->score;
                 $total = $score / count($judges);
@@ -346,7 +346,7 @@ class ResultCrudController extends CrudController
         }   
         // dd($newArray);
          $candidates = $newArray;
-        return view('custom.creativeheaddress',compact('judges','candidates'));
+        return view('custom.facialbeautylooks',compact('judges','candidates'));
     }
 
     public function formalwear() {
@@ -355,21 +355,21 @@ class ResultCrudController extends CrudController
 
         $judges = User::where('judgeno','>',0)->get();
 
-        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 6');
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 6 AND tabulator.round_no = 1');
 
         $getTotalCandidates = Candidate::get()->all();
         
         foreach ($getTotalCandidates as $key => $value) {
             // var_dump($getTotalCandidates[$key]->firstname);
-            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 6');
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 6 AND tabulator.round_no = 1');
 
             $total = 0;
             $score = 0;
             foreach ($getVote as $key2 => $value) {
-                if((int)$value->score >= 4  ) {
+                if((int)$value->score >= 7) {
                     $score += (int)$value->score;
                 } else {
-                    $score += 4;
+                    $score += 7;
                 }
                 // $score += (int)$value->score;
                 $total = $score / count($judges);
@@ -391,7 +391,119 @@ class ResultCrudController extends CrudController
         }   
         // dd($newArray);
          $candidates = $newArray;
-        return view('custom.creativeheaddress',compact('judges','candidates'));
+        return view('custom.formalwear',compact('judges','candidates'));
+    }
+
+
+      /**************************************/
+     /*              FINALS                */
+    /**************************************/ 
+
+    public function intelligence() {
+
+        $newArray = [];
+
+        $judges = User::where('judgeno','>',0)->get();
+        // $candidates = Candidate::select('candidates.*', 'tabulator.*')->distinct('tabulator.*')->join('tabulator', 'candidates.candidate_no', '=', 'tabulator.candidate_no')->where('tabulator.criteria_no', '=', '1')->get();
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 7 AND tabulator.round_no = 2 AND candidates.isWinner = 1');
+
+        $jid = 1;
+        // LOOP ALL JUDGES
+        $getTotalCandidates = Candidate::where('isWinner', 1)->get();
+        
+        foreach ($getTotalCandidates as $key => $value) {
+            // var_dump($getTotalCandidates[$key]->firstname);
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 7 AND tabulator.round_no = 2 AND candidates.isWinner = 1');
+
+            $total = 0;
+            $score = 0;
+            foreach ($getVote as $key2 => $value) {
+                if((int)$value->score >= 20) {
+                    $score += (int)$value->score;
+                } else {
+                    $score += 20;
+                }
+                // $score += (int)$value->score;
+                $total = $score / count($judges);
+            }
+            // dd(number_format($total, 2, '.', ' '));
+
+            // var_dump($getTotalCandidates[$key]->firstname);
+            $a  = [
+                "id" => $getTotalCandidates[$key]->id,
+                "firstname" => $getTotalCandidates[$key]->firstname,
+                "lastname" => $getTotalCandidates[$key]->lastname,
+                "gender" => $getTotalCandidates[$key]->gender,
+                "department" => $getTotalCandidates[$key]->department,
+                "candidate_no" => $getTotalCandidates[$key]->candidate_no,
+                "vote" => $getVote,
+                "total_avg" => number_format($total, 2, '.', ' ')
+            ];
+
+
+            array_push($newArray, $a);
+
+        }   
+        $candidates = $newArray;
+
+        
+
+        // dd($newArray);
+        return view('custom.intelligence',compact('judges','candidates'));
+    }
+
+
+    public function overallimpression () {
+
+        $newArray = [];
+
+        $judges = User::where('judgeno','>',0)->get();
+        // $candidates = Candidate::select('candidates.*', 'tabulator.*')->distinct('tabulator.*')->join('tabulator', 'candidates.candidate_no', '=', 'tabulator.candidate_no')->where('tabulator.criteria_no', '=', '1')->get();
+        $candidates = DB::select('SELECT candidates.*, tabulator.score, tabulator.judge_no, tabulator.criteria_no, tabulator.candidate_no, tabulator.round_no FROM candidates INNER JOIN tabulator ON tabulator.candidate_no = candidates.candidate_no AND tabulator.criteria_no = 8 AND tabulator.round_no = 2 AND candidates.isWinner = 1');
+
+        $jid = 1;
+        // LOOP ALL JUDGES
+        $getTotalCandidates = Candidate::where('isWinner', 1)->get();
+        
+        foreach ($getTotalCandidates as $key => $value) {
+            // var_dump($getTotalCandidates[$key]->firstname);
+            $getVote = DB::select('SELECT tabulator.*, candidates.firstname FROM tabulator INNER JOIN candidates ON tabulator.candidate_no = candidates.candidate_no AND candidates.candidate_no = ' . $getTotalCandidates[$key]->candidate_no . ' AND tabulator.criteria_no = 8 AND tabulator.round_no = 2 AND candidates.isWinner = 1');
+
+            $total = 0;
+            $score = 0;
+            foreach ($getVote as $key2 => $value) {
+                if((int)$value->score >= 20) {
+                    $score += (int)$value->score;
+                } else {
+                    $score += 20;
+                }
+                // $score += (int)$value->score;
+                $total = $score / count($judges);
+            }
+            // dd(number_format($total, 2, '.', ' '));
+
+            // var_dump($getTotalCandidates[$key]->firstname);
+            $a  = [
+                "id" => $getTotalCandidates[$key]->id,
+                "firstname" => $getTotalCandidates[$key]->firstname,
+                "lastname" => $getTotalCandidates[$key]->lastname,
+                "gender" => $getTotalCandidates[$key]->gender,
+                "department" => $getTotalCandidates[$key]->department,
+                "candidate_no" => $getTotalCandidates[$key]->candidate_no,
+                "vote" => $getVote,
+                "total_avg" => number_format($total, 2, '.', ' ')
+            ];
+
+
+            array_push($newArray, $a);
+
+        }   
+        $candidates = $newArray;
+
+        
+
+        // dd($newArray);
+        return view('custom.overallimpression',compact('judges','candidates'));
     }
 
     public function store(StoreRequest $request)

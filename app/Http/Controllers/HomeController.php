@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $criterion = Criterion::all();
+        $criterion = Criterion::where('round_id', '=', '1')->get();
         $candidates = Candidate::all();
         return view('home')->withCriterion($criterion)->withCandidates($candidates);
     }
